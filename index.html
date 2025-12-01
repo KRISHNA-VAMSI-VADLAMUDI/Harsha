@@ -20,9 +20,13 @@
             --light-color: #ecf0f1;
             --dark-color: #2c3e50;
             --text-color: #333;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             --blog-primary: #27ae60;
             --blog-secondary: #2ecc71;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-projects: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
         }
         
         body {
@@ -39,7 +43,7 @@
         
         /* Header & Navigation */
         header {
-            background-color: var(--primary-color);
+            background: var(--gradient-primary);
             color: white;
             padding: 20px 0;
             box-shadow: var(--shadow);
@@ -65,7 +69,7 @@
             height: 50px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--secondary-color);
+            border: 3px solid white;
         }
         
         .logo-text {
@@ -74,7 +78,7 @@
         }
         
         .logo-text span {
-            color: var(--secondary-color);
+            color: #f1c40f;
         }
         
         nav ul {
@@ -90,11 +94,14 @@
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
         
         nav ul li a:hover {
-            color: var(--secondary-color);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
         
         .mobile-menu {
@@ -103,103 +110,478 @@
             cursor: pointer;
         }
         
-        /* Hero Section */
+        /* Resume Download Button in Hero Section */
+        .resume-download-hero {
+            margin-top: 30px;
+            display: inline-block;
+        }
+        
+        .resume-download {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 20px rgba(79, 172, 254, 0.3);
+            font-size: 1.1rem;
+        }
+        
+        .resume-download:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(79, 172, 254, 0.4);
+        }
+        
+        /* Hero Section with Droplet Profile Image */
         .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(44, 62, 80, 0.95), rgba(44, 62, 80, 0.95)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 100px 0;
-            text-align: center;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(transparent, #f8f9fa);
+            z-index: 1;
         }
         
         .hero-content {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 50px;
+            gap: 60px;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
         }
         
+        /* Droplet Profile Image Design */
         .profile-image-container {
-            flex: 0 0 300px;
+            flex: 0 0 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .droplet-container {
+            width: 380px;
+            height: 450px;
+            position: relative;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3));
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .droplet-shape {
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-secondary);
+            clip-path: polygon(50% 0%, 100% 30%, 100% 70%, 50% 100%, 0% 70%, 0% 30%);
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+        
+        .droplet-shape:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
         
         .profile-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
+            width: 90%;
+            height: 90%;
             object-fit: cover;
-            border: 5px solid var(--secondary-color);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            clip-path: polygon(50% 0%, 100% 30%, 100% 70%, 50% 100%, 0% 70%, 0% 30%);
+            border-radius: 10px;
+            transition: all 0.5s ease;
         }
         
         .profile-image:hover {
             transform: scale(1.05);
+            filter: brightness(1.1);
         }
         
         .hero-text {
             flex: 1;
             min-width: 300px;
-            text-align: left;
         }
         
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(45deg, #fff, #3498db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .hero p {
             font-size: 1.2rem;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            line-height: 1.7;
         }
         
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-top: 30px;
+            gap: 12px;
+            margin-top: 25px;
         }
         
         .contact-item {
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(8px);
         }
         
         /* Sections */
         section {
-            padding: 80px 0;
+            padding: 70px 0;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             position: relative;
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             color: var(--primary-color);
             display: inline-block;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
+            position: relative;
         }
         
         .section-title h2:after {
             content: '';
             position: absolute;
-            width: 100px;
+            width: 120px;
             height: 4px;
-            background-color: var(--secondary-color);
+            background: var(--gradient-accent);
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 4px;
+        }
+        
+        /* Compact Education Section */
+        #education {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 60px 0;
+        }
+        
+        .education-compact {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .education-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .education-card:nth-child(1) { border-color: #667eea; }
+        .education-card:nth-child(2) { border-color: #f093fb; }
+        .education-card:nth-child(3) { border-color: #4facfe; }
+        .education-card:nth-child(4) { border-color: #f5576c; }
+        
+        .education-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .education-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .education-year {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .education-institute {
+            color: var(--secondary-color);
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .education-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .education-grade {
+            display: inline-block;
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        /* Projects Section with New Color */
+        #projects {
+            background: var(--gradient-projects);
+            color: #333;
+            padding: 60px 0;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .project-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+        }
+        
+        .project-icon {
+            font-size: 2.5rem;
+            color: #ff6b6b;
+            margin: 25px auto 15px;
+            text-align: center;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-content {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .project-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .project-duration {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .project-description {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .project-features {
+            list-style: none;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .project-features li {
+            padding: 6px 0;
+            color: #555;
+            position: relative;
+            padding-left: 25px;
+            font-size: 0.9rem;
+        }
+        
+        .project-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        
+        /* Experience Section */
+        #experience {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+        
+        .experience-item {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border-left: 4px solid var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .experience-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .experience-title h3 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 6px;
+        }
+        
+        .experience-company {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .experience-date {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        
+        .experience-description ul {
+            padding-left: 18px;
+        }
+        
+        .experience-description li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+            position: relative;
+            padding-left: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .experience-description li:before {
+            content: '→';
+            position: absolute;
+            left: -15px;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, rgba(52, 152, 219, 0.15) 0%, rgba(52, 152, 219, 0.1) 100%);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            color: var(--primary-color);
         }
         
         /* Blog Section */
         #blog {
             background-color: #f8fff9;
+            padding: 60px 0;
         }
         
         .blog-section-title h2 {
@@ -207,229 +589,179 @@
         }
         
         .blog-section-title h2:after {
-            background-color: var(--blog-secondary) !important;
+            background: var(--gradient-secondary) !important;
+        }
+        
+        .blog-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .blog-card {
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
             transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+            margin-bottom: 30px;
         }
         
         .blog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .blog-image {
-            height: 250px;
+            height: 300px;
             width: 100%;
             object-fit: cover;
         }
         
         .blog-content {
             padding: 30px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
         }
         
         .blog-meta {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 15px;
+            align-items: center;
+            margin-bottom: 20px;
             color: #7f8c8d;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
         
         .blog-category {
-            background-color: var(--blog-secondary);
+            background: var(--gradient-secondary);
             color: white;
-            padding: 5px 15px;
+            padding: 6px 15px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
         }
         
         .blog-title {
             color: var(--blog-primary);
             font-size: 1.8rem;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             line-height: 1.3;
         }
         
         .blog-excerpt {
             color: #555;
             margin-bottom: 25px;
-            flex-grow: 1;
+            font-size: 1rem;
+            line-height: 1.7;
         }
         
         .blog-read-more {
             display: inline-block;
-            background-color: var(--blog-primary);
+            background: var(--gradient-primary);
             color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
+            padding: 12px 28px;
+            border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
             text-align: center;
-            border: 2px solid var(--blog-primary);
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
         }
         
         .blog-read-more:hover {
-            background-color: white;
-            color: var(--blog-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.3);
         }
         
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
+        /* Footer */
+        footer {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 60px 0 25px;
+            position: relative;
+            overflow: hidden;
         }
         
-        /* Blog Modal */
-        .blog-modal {
-            display: none;
-            position: fixed;
+        footer:before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            overflow-y: auto;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-accent);
         }
         
-        .blog-modal-content {
-            background-color: white;
-            margin: 50px auto;
-            max-width: 900px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-        }
-        
-        .blog-modal-header {
-            background: linear-gradient(135deg, var(--blog-primary), var(--blog-secondary));
-            color: white;
-            padding: 40px;
-            position: relative;
-        }
-        
-        .blog-modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .blog-modal-close:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .blog-modal-title {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .blog-modal-meta {
+        .footer-content {
             display: flex;
-            gap: 20px;
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-        
-        .blog-modal-body {
-            padding: 50px;
-        }
-        
-        .blog-modal-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 10px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 35px;
             margin-bottom: 40px;
         }
         
-        .blog-modal-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        
-        .blog-modal-text h3 {
-            color: var(--blog-primary);
-            margin: 30px 0 15px;
-            font-size: 1.5rem;
-        }
-        
-        .blog-modal-text p {
+        .footer-section h3 {
             margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 8px;
         }
         
-        .blog-modal-text ul {
-            margin-left: 20px;
-            margin-bottom: 20px;
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--gradient-accent);
         }
         
-        .blog-modal-text li {
-            margin-bottom: 10px;
-        }
-        
-        .blog-modal-text blockquote {
-            border-left: 5px solid var(--blog-secondary);
-            padding-left: 20px;
-            margin: 30px 0;
-            font-style: italic;
-            color: #555;
-            font-size: 1.2rem;
-        }
-        
-        .blog-modal-footer {
-            padding: 30px 50px;
-            background-color: #f8f9fa;
-            border-top: 1px solid #eee;
+        .social-links {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            gap: 12px;
+            margin-top: 15px;
         }
         
-        .blog-modal-share {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .blog-modal-share a {
-            display: flex;
+        .social-links a {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             width: 40px;
             height: 40px;
-            background-color: var(--blog-primary);
+            background: rgba(255, 255, 255, 0.1);
             color: white;
             border-radius: 50%;
             text-decoration: none;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            font-size: 1.1rem;
         }
         
-        .blog-modal-share a:hover {
-            background-color: var(--blog-secondary);
+        .social-links a:hover {
+            background: var(--gradient-accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+            opacity: 0.8;
         }
         
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .droplet-container {
+                width: 350px;
+                height: 420px;
+            }
+            
+            .education-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -452,7 +784,7 @@
             }
             
             nav ul li {
-                margin: 10px 0;
+                margin: 8px 0;
             }
             
             .mobile-menu {
@@ -463,75 +795,77 @@
             }
             
             .hero {
-                padding: 60px 0;
+                padding: 50px 0;
             }
             
             .hero-content {
                 flex-direction: column;
-                text-align: center;
-                gap: 30px;
+                gap: 40px;
             }
             
-            .hero-text {
-                text-align: center;
+            .droplet-container {
+                width: 300px;
+                height: 370px;
             }
             
             .profile-image-container {
-                flex: 0 0 250px;
-            }
-            
-            .profile-image {
-                width: 250px;
-                height: 250px;
+                flex: 0 0 100%;
             }
             
             .hero h1 {
                 font-size: 2.2rem;
             }
             
+            .education-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .droplet-container {
+                width: 260px;
+                height: 320px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
             .hero p {
                 font-size: 1rem;
             }
             
-            .contact-info {
-                align-items: center;
+            .section-title h2 {
+                font-size: 1.6rem;
             }
             
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .blog-modal-content {
-                margin: 20px;
-                width: calc(100% - 40px);
-            }
-            
-            .blog-modal-header {
-                padding: 30px 20px;
-            }
-            
-            .blog-modal-title {
-                font-size: 1.8rem;
-            }
-            
-            .blog-modal-body {
-                padding: 30px;
-            }
-            
-            .blog-modal-image {
-                height: 250px;
-            }
-            
-            .blog-modal-footer {
+            .education-card,
+            .project-content,
+            .experience-item,
+            .blog-content {
                 padding: 20px;
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
+            }
+            
+            .resume-download {
+                padding: 12px 25px;
+                font-size: 1rem;
             }
         }
-        
-        /* ... [Previous CSS styles remain the same, just adding the new blog section styles] ... */
-        
     </style>
 </head>
 <body>
@@ -539,20 +873,20 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Profile" class="logo-img">
+                <img src="hero.jpg&auto=format&fit=crop&w=200&q=80" alt="Profile" class="logo-img">
                 <div class="logo-text">Vadlamudi <span>Venkata Sri Harsha</span></div>
             </div>
+            
             <div class="mobile-menu" id="mobileMenu">
                 <i class="fas fa-bars"></i>
             </div>
+            
             <nav>
                 <ul id="navMenu">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#education">Education</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
-                    <li><a href="#activities">Activities</a></li>
                     <li><a href="#blog">Blog</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -562,171 +896,303 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <!-- ... [Hero section content remains the same] ... -->
+        <div class="container">
+            <div class="hero-content">
+                <div class="profile-image-container">
+                    <div class="droplet-container">
+                        <div class="droplet-shape">
+                            <img src="hero.jpg&auto=format&fit=crop&w=700&q=80" alt="Vadlamudi Venkata Sri Harsha" class="profile-image">
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-text">
+                    <h1>Vadlamudi Venkata Sri Harsha</h1>
+                    <p>MBA Marketing Student | Operations Executive | Supply Chain Specialist | Passionate about Digital Transformation & Process Optimization</p>
+                    
+                    <div class="contact-info">
+                        <!-- Email link with proper mailto -->
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:vadlamudi1.tapmimp12025@learner.manipal.edu" style="color: white; text-decoration: none;">
+                                vadlamudi1.tapmimp12025@learner.manipal.edu
+                            </a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91-9642923052</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn: Harsha Vadlamudi</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Hyderabad, India</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Resume Download in Hero Section -->
+                    <div class="resume-download-hero">
+                        <a href="https://raw.githubusercontent.com/KRISHNA-VAMSI-VADLAMUDI/Harsha/main/25M151_VadlamudiVenkata%20Sri%20Harsha.pdf" 
+                           class="resume-download" 
+                           target="_blank"
+                           download="Vadlamudi_Venkata_Sri_Harsha_Resume.pdf">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Education Section -->
+    <!-- Compact Education Section -->
     <section id="education">
-        <!-- ... [Education section content remains the same] ... -->
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+            
+            <div class="education-compact">
+                <div class="education-grid">
+                    <!-- Education Card 1 -->
+                    <div class="education-card">
+                        <div class="education-header">
+                            <h3 class="education-title">MBA in Marketing</h3>
+                            <span class="education-year">2025-2027</span>
+                        </div>
+                        <div class="education-institute">T. A. Pai Management Institute, Manipal</div>
+                        <p class="education-description">Specializing in marketing strategy, consumer behavior, and digital marketing.</p>
+                        <span class="education-grade">Pursuing</span>
+                    </div>
+                    
+                    <!-- Education Card 2 -->
+                    <div class="education-card">
+                        <div class="education-header">
+                            <h3 class="education-title">BSc in Agriculture</h3>
+                            <span class="education-year">2018-2022</span>
+                        </div>
+                        <div class="education-institute">Gd Goenka University, Gurugram</div>
+                        <p class="education-description">Comprehensive study of agricultural sciences, supply chain management, and agri-business.</p>
+                        <span class="education-grade">79%</span>
+                    </div>
+                    
+                    <!-- Education Card 3 -->
+                    <div class="education-card">
+                        <div class="education-header">
+                            <h3 class="education-title">Higher Secondary</h3>
+                            <span class="education-year">2017-2018</span>
+                        </div>
+                        <div class="education-institute">Narayana Jr College, Vijayawada</div>
+                        <p class="education-description">Science stream with focus on mathematics and science subjects.</p>
+                        <span class="education-grade">90%</span>
+                    </div>
+                    
+                    <!-- Education Card 4 -->
+                    <div class="education-card">
+                        <div class="education-header">
+                            <h3 class="education-title">Secondary School</h3>
+                            <span class="education-year">2015-2016</span>
+                        </div>
+                        <div class="education-institute">AP Model School, Karempudi</div>
+                        <p class="education-description">Strong foundation in core subjects with excellent academic performance.</p>
+                        <span class="education-grade">87%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" style="background-color: #f8f9fa;">
-        <!-- ... [Experience section content remains the same] ... -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Professional Experience</h2>
+            </div>
+            
+            <!-- Experience 1 -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">
+                        <h3>Operations Executive</h3>
+                        <div class="experience-company">Reliance Retail, Hyderabad | MILKBASKET</div>
+                    </div>
+                    <div class="experience-date">July 2022 – Oct 2023</div>
+                </div>
+                <div class="experience-description">
+                    <ul>
+                        <li>Managed the <span class="highlight">end-to-end inward processing</span>, <span class="highlight">quality inspection</span>, and timely handling of products, minimizing wastage.</li>
+                        <li>Improved packing efficiency <span class="highlight">from 500 to 700 units/packer</span> and strictly implemented FIFO.</li>
+                        <li><span class="highlight">Spearheaded Cross-Functional Collaboration</span> using <span class="highlight">SAP</span>, ensuring optimal <span class="highlight">product availability</span>.</li>
+                        <li>Reduced <span class="highlight">refund percentage by 60%</span> (2.55% to 1%) through feedback analysis.</li>
+                        <li><span class="highlight">Controlled operational costs</span> by aligning business processes with SOPs.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Experience 2 -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">
+                        <h3>Manager Ops</h3>
+                        <div class="experience-company">Eruvaka Naturals | Hub Operations</div>
+                    </div>
+                    <div class="experience-date">April 2022 – June 2022</div>
+                </div>
+                <div class="experience-description">
+                    <ul>
+                        <li><span class="highlight">Managed Purchase Orders (POs), inbound logistics, and quality assurance</span> for F&V.</li>
+                        <li><span class="highlight">Executed Sales Delivery</span> plans optimizing manpower for <span class="highlight">last-mile delivery</span>.</li>
+                        <li>Gained hands-on exposure to retail and e-commerce supply chain processes.</li>
+                        <li>Collaborated with Agri-entrepreneurs and local suppliers.</li>
+                        <li>Acquired knowledge in <span class="highlight">consumer demand analysis and product positioning</span>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section with New Color -->
     <section id="projects">
-        <!-- ... [Projects section content remains the same] ... -->
-    </section>
-
-    <!-- Certifications Section -->
-    <section id="certifications" style="background-color: #f8f9fa;">
-        <!-- ... [Certifications section content remains the same] ... -->
-    </section>
-
-    <!-- Activities Section -->
-    <section id="activities">
-        <!-- ... [Activities section content remains the same] ... -->
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: #333;">Projects & Initiatives</h2>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Eruvaka Naturals</h3>
+                        <span class="project-duration">Nov 2021 – Jan 2022</span>
+                        <p class="project-description">Project internship on "Operation, Quality, and Product Development" as part of the B.Sc. (Hons.) Agriculture curriculum.</p>
+                        <ul class="project-features">
+                            <li>Gained practical exposure to supply chain operations</li>
+                            <li>Quality assurance and product innovation</li>
+                            <li>Product development and process efficiency</li>
+                            <li>Sustainable packaging solutions</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Rural Agricultural Work Experience</h3>
+                        <span class="project-duration">July 2021 – Sep 2021</span>
+                        <p class="project-description">Coordinated awareness and outreach programs in rural villages to promote modern agricultural practices.</p>
+                        <ul class="project-features">
+                            <li>Engaged with 30+ local farmers</li>
+                            <li>Conducted field demonstrations</li>
+                            <li>Managed buyer interactions</li>
+                            <li>Team leadership and coordination</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Blog Section -->
     <section id="blog">
         <div class="container">
             <div class="section-title blog-section-title">
-                <h2>My Blog & Articles</h2>
+                <h2>Latest Insight</h2>
             </div>
             
-            <div class="blog-grid">
-                <!-- Blog Post 1 -->
+            <div class="blog-container">
+                <!-- Single Blog Post -->
                 <div class="blog-card">
-                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Atomic Habits Book" class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Atomic Habits Book" class="blog-image">
                     <div class="blog-content">
                         <div class="blog-meta">
                             <span><i class="far fa-calendar"></i> November 15, 2024</span>
                             <span class="blog-category">Personal Development</span>
                         </div>
-                        <h3 class="blog-title">Atomic Habits: The Power of Tiny Changes</h3>
-                        <p class="blog-excerpt">Discover how small, consistent habits can lead to remarkable results. As someone who values operational efficiency and continuous improvement, I found James Clear's principles transformative for both personal and professional growth.</p>
-                        <a href="#atomic-habits-article" class="blog-read-more" id="openBlogModal">Read Full Article</a>
-                    </div>
-                </div>
-                
-                <!-- Blog Post 2 -->
-                <div class="blog-card">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Supply Chain Management" class="blog-image">
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar"></i> October 28, 2024</span>
-                            <span class="blog-category">Operations</span>
-                        </div>
-                        <h3 class="blog-title">Optimizing Supply Chain with Six Sigma</h3>
-                        <p class="blog-excerpt">Applying Six Sigma principles to modern supply chain challenges. Learn how data-driven decisions and process optimization can revolutionize logistics and inventory management.</p>
-                        <a href="#" class="blog-read-more">Coming Soon</a>
-                    </div>
-                </div>
-                
-                <!-- Blog Post 3 -->
-                <div class="blog-card">
-                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Digital Marketing" class="blog-image">
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar"></i> September 10, 2024</span>
-                            <span class="blog-category">Marketing</span>
-                        </div>
-                        <h3 class="blog-title">Digital Transformation in Retail Operations</h3>
-                        <p class="blog-excerpt">Exploring how digital tools and analytics are reshaping retail operations. From my experience at Reliance Retail, I share insights on leveraging technology for operational excellence.</p>
-                        <a href="#" class="blog-read-more">Coming Soon</a>
+                        <h3 class="blog-title">Atomic Habits: How Tiny Changes Create Remarkable Results</h3>
+                        <p class="blog-excerpt">As an operations professional, I've always been fascinated by systems and processes that drive efficiency. James Clear's "Atomic Habits" provides a framework that resonates deeply with my experience in optimizing operations. The book teaches us that remarkable results don't come from massive changes but from small, consistent improvements compounded over time...</p>
+                        <!-- Opens in new window -->
+                        <a href="https://jamesclear.com/atomic-habits" 
+                           class="blog-read-more" 
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Read Full Article
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Blog Modal -->
-    <div class="blog-modal" id="blogModal">
-        <div class="blog-modal-content">
-            <div class="blog-modal-header">
-                <button class="blog-modal-close" id="closeBlogModal">&times;</button>
-                <h2 class="blog-modal-title">Atomic Habits: The Power of Tiny Changes</h2>
-                <div class="blog-modal-meta">
-                    <span><i class="far fa-user"></i> Vadlamudi Venkata Sri Harsha</span>
-                    <span><i class="far fa-calendar"></i> November 15, 2024</span>
-                    <span><i class="far fa-clock"></i> 8 min read</span>
-                </div>
-            </div>
-            
-            <div class="blog-modal-body">
-                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Atomic Habits" class="blog-modal-image">
-                
-                <div class="blog-modal-text">
-                    <p>As an operations professional and MBA student passionate about efficiency and continuous improvement, I recently read James Clear's "Atomic Habits" and found its principles remarkably applicable to both personal development and professional operations. The book's central thesis—that tiny changes can lead to remarkable results—resonated deeply with my experience in optimizing processes and systems.</p>
-                    
-                    <h3>The 1% Rule: Small Gains Lead to Big Results</h3>
-                    <p>Clear introduces the concept of getting 1% better every day. In operations, we see this principle in action through Kaizen and continuous improvement methodologies. Just as a 1% daily improvement compounds to nearly 38 times better over a year, small operational tweaks—like reducing packing time by a few seconds or improving inventory accuracy by a fraction—can lead to massive efficiency gains over time.</p>
-                    
-                    <blockquote>
-                        "You do not rise to the level of your goals. You fall to the level of your systems."
-                    </blockquote>
-                    
-                    <h3>Building Effective Habit Systems</h3>
-                    <p>The Four Laws of Behavior Change that Clear outlines are particularly powerful:</p>
-                    
-                    <ul>
-                        <li><strong>Make it Obvious:</strong> In operations, this translates to clear SOPs and visual management systems. When processes are visible and obvious, compliance increases naturally.</li>
-                        <li><strong>Make it Attractive:</strong> Linking habits to immediate rewards creates positive reinforcement. In team management, this could mean celebrating small wins and creating positive feedback loops.</li>
-                        <li><strong>Make it Easy:</strong> Reducing friction is key. In supply chain management, we constantly work to reduce steps, simplify processes, and eliminate bottlenecks.</li>
-                        <li><strong>Make it Satisfying:</strong> Immediate rewards reinforce behavior. In my work at Reliance Retail, we tracked daily metrics that showed immediate impact, making continuous improvement satisfying for the team.</li>
-                    </ul>
-                    
-                    <h3>Applying Atomic Habits to Operations Management</h3>
-                    <p>From my experience in retail operations, I've seen how these principles work in practice:</p>
-                    
-                    <p><strong>1. Habit Stacking in Process Improvement:</strong> By attaching new quality checks to existing processes (like adding a quick inspection after each packing station), we built consistent quality habits without disrupting workflow.</p>
-                    
-                    <p><strong>2. Environment Design for Efficiency:</strong> Just as Clear suggests designing environments for better habits, we optimized warehouse layouts to make efficient workflows the easiest option, reducing the average packing time significantly.</p>
-                    
-                    <p><strong>3. Identity-Based Habits in Team Development:</strong> Instead of focusing solely on outcomes ("reduce shrinkage"), we cultivated an identity of excellence ("we are a team that maintains impeccable inventory accuracy"). This shift in mindset led to more sustainable improvements.</p>
-                    
-                    <h3>My Personal Implementation</h3>
-                    <p>Applying these principles to my MBA journey and professional development:</p>
-                    
-                    <ul>
-                        <li>I've implemented a "two-minute rule" for learning—committing to just two minutes of reading industry articles daily, which often extends to much longer sessions</li>
-                        <li>Created a study environment that makes productive habits obvious and easy</li>
-                        <li>Used habit tracking to maintain consistency in project work and skill development</li>
-                        <li>Applied the "never miss twice" rule to maintain momentum in both academic and professional commitments</li>
-                    </ul>
-                    
-                    <h3>Key Takeaways for Professionals</h3>
-                    <p>Whether you're in operations, marketing, or any field requiring consistent performance:</p>
-                    
-                    <p>1. <strong>Focus on systems, not goals:</strong> Sustainable improvement comes from building robust systems that produce consistent results.</p>
-                    <p>2. <strong>Small changes compound:</strong> Don't underestimate the power of 1% improvements in processes, skills, or productivity.</p>
-                    <p>3. <strong>Design your environment for success:</strong> Make good habits easy and bad habits difficult through thoughtful design.</p>
-                    <p>4. <strong>Measure what matters:</strong> Track leading indicators (habits and processes) rather than just lagging indicators (outcomes).</p>
-                    
-                    <p>As someone who has seen the power of incremental improvement in supply chain optimization and operational efficiency, I can confidently say that the principles in "Atomic Habits" are not just personal development advice—they're a blueprint for excellence in any systematic endeavor.</p>
-                </div>
-            </div>
-            
-            <div class="blog-modal-footer">
-                <div class="blog-modal-tags">
-                    <strong>Tags:</strong> Personal Development, Productivity, Operations, Continuous Improvement, Leadership
-                </div>
-                <div class="blog-modal-share">
-                    <a href="#" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" title="Copy Link"><i class="fas fa-link"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer id="contact">
-        <!-- ... [Footer content remains the same] ... -->
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-envelope"></i> 
+                        <a href="mailto:vadlamudi1.tapmimp12025@learner.manipal.edu" style="color: white; text-decoration: none;">
+                            vadlamudi1.tapmimp12025@learner.manipal.edu
+                        </a>
+                    </p>
+                    <p><i class="fas fa-phone"></i> +91-9642923052</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Hyderabad, India</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Navigation</h3>
+                    <p><a href="#home" style="color: white; text-decoration: none;">Home</a></p>
+                    <p><a href="#education" style="color: white; text-decoration: none;">Education</a></p>
+                    <p><a href="#experience" style="color: white; text-decoration: none;">Experience</a></p>
+                    <p><a href="#projects" style="color: white; text-decoration: none;">Projects</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect With Me</h3>
+                    <div class="social-links">
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/venkata-sri-harsha-vadlamudi-50b52a196/" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           title="LinkedIn Profile">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/hangry_panda3/?igsh=MWdhNGc5eGh4bGRidg%3D%3D#" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           title="Instagram Profile">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <!-- GitHub -->
+                        <a href="https://github.com/KRISHNA-VAMSI-VADLAMUDI" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           title="GitHub Profile">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <!-- Resume Download -->
+                        <a href="https://raw.githubusercontent.com/KRISHNA-VAMSI-VADLAMUDI/Harsha/main/25M151_VadlamudiVenkata%20Sri%20Harsha.pdf" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           title="Download Resume"
+                           download="Vadlamudi_Venkata_Sri_Harsha_Resume.pdf">
+                            <i class="fas fa-file-download"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Vadlamudi Venkata Sri Harsha. All rights reserved.</p>
+                <p style="margin-top: 10px;">Designed with passion for excellence</p>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -741,10 +1207,11 @@
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
+                // Don't prevent default for hash links that scroll within page
                 const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
+                if(targetId === '#' || targetId.startsWith('#blog')) return;
+                
+                e.preventDefault();
                 
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
@@ -781,47 +1248,23 @@
             });
         });
         
-        // Blog Modal Functionality
-        const openBlogModal = document.getElementById('openBlogModal');
-        const closeBlogModal = document.getElementById('closeBlogModal');
-        const blogModal = document.getElementById('blogModal');
-        
-        openBlogModal.addEventListener('click', function(e) {
-            e.preventDefault();
-            blogModal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
-        });
-        
-        closeBlogModal.addEventListener('click', function() {
-            blogModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-        
-        // Close modal when clicking outside content
-        blogModal.addEventListener('click', function(e) {
-            if(e.target === blogModal) {
-                blogModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-        
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if(e.key === 'Escape' && blogModal.style.display === 'block') {
-                blogModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-        
         // Add active class styling to navigation
         const style = document.createElement('style');
         style.textContent = `
             nav ul li a.active {
-                color: var(--secondary-color) !important;
-                font-weight: bold;
+                background: rgba(255, 255, 255, 0.2) !important;
+                transform: translateY(-2px);
             }
         `;
         document.head.appendChild(style);
+        
+        // Open all external links in new tab
+        document.querySelectorAll('a[href^="http"]').forEach(link => {
+            if (!link.href.includes(window.location.hostname)) {
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+            }
+        });
     </script>
 </body>
 </html>
