@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vadlamudi Venkata Sri Harsha - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --blog-primary: #27ae60;
+            --blog-secondary: #2ecc71;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary-color);
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .logo-text span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .profile-image-container {
+            flex: 0 0 300px;
+        }
+        
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--secondary-color);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Blog Section */
+        #blog {
+            background-color: #f8fff9;
+        }
+        
+        .blog-section-title h2 {
+            color: var(--blog-primary) !important;
+        }
+        
+        .blog-section-title h2:after {
+            background-color: var(--blog-secondary) !important;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .blog-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .blog-category {
+            background-color: var(--blog-secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .blog-title {
+            color: var(--blog-primary);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .blog-excerpt {
+            color: #555;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+        
+        .blog-read-more {
+            display: inline-block;
+            background-color: var(--blog-primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-align: center;
+            border: 2px solid var(--blog-primary);
+        }
+        
+        .blog-read-more:hover {
+            background-color: white;
+            color: var(--blog-primary);
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        /* Blog Modal */
+        .blog-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .blog-modal-content {
+            background-color: white;
+            margin: 50px auto;
+            max-width: 900px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .blog-modal-header {
+            background: linear-gradient(135deg, var(--blog-primary), var(--blog-secondary));
+            color: white;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .blog-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .blog-modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .blog-modal-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .blog-modal-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .blog-modal-body {
+            padding: 50px;
+        }
+        
+        .blog-modal-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .blog-modal-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .blog-modal-text h3 {
+            color: var(--blog-primary);
+            margin: 30px 0 15px;
+            font-size: 1.5rem;
+        }
+        
+        .blog-modal-text p {
+            margin-bottom: 20px;
+        }
+        
+        .blog-modal-text ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .blog-modal-text li {
+            margin-bottom: 10px;
+        }
+        
+        .blog-modal-text blockquote {
+            border-left: 5px solid var(--blog-secondary);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: #555;
+            font-size: 1.2rem;
+        }
+        
+        .blog-modal-footer {
+            padding: 30px 50px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .blog-modal-share {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .blog-modal-share a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--blog-primary);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .blog-modal-share a:hover {
+            background-color: var(--blog-secondary);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                margin-top: 20px;
+                display: none;
+                width: 100%;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .hero-text {
+                text-align: center;
+            }
+            
+            .profile-image-container {
+                flex: 0 0 250px;
+            }
+            
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .contact-info {
+                align-items: center;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-modal-content {
+                margin: 20px;
+                width: calc(100% - 40px);
+            }
+            
+            .blog-modal-header {
+                padding: 30px 20px;
+            }
+            
+            .blog-modal-title {
+                font-size: 1.8rem;
+            }
+            
+            .blog-modal-body {
+                padding: 30px;
+            }
+            
+            .blog-modal-image {
+                height: 250px;
+            }
+            
+            .blog-modal-footer {
+                padding: 20px;
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+        
+        /* ... [Previous CSS styles remain the same, just adding the new blog section styles] ... */
+        
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Profile" class="logo-img">
+                <div class="logo-text">Vadlamudi <span>Venkata Sri Harsha</span></div>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#activities">Activities</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- ... [Hero section content remains the same] ... -->
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <!-- ... [Education section content remains the same] ... -->
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" style="background-color: #f8f9fa;">
+        <!-- ... [Experience section content remains the same] ... -->
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <!-- ... [Projects section content remains the same] ... -->
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" style="background-color: #f8f9fa;">
+        <!-- ... [Certifications section content remains the same] ... -->
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities">
+        <!-- ... [Activities section content remains the same] ... -->
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog">
+        <div class="container">
+            <div class="section-title blog-section-title">
+                <h2>My Blog & Articles</h2>
+            </div>
+            
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Atomic Habits Book" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> November 15, 2024</span>
+                            <span class="blog-category">Personal Development</span>
+                        </div>
+                        <h3 class="blog-title">Atomic Habits: The Power of Tiny Changes</h3>
+                        <p class="blog-excerpt">Discover how small, consistent habits can lead to remarkable results. As someone who values operational efficiency and continuous improvement, I found James Clear's principles transformative for both personal and professional growth.</p>
+                        <a href="#atomic-habits-article" class="blog-read-more" id="openBlogModal">Read Full Article</a>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Supply Chain Management" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> October 28, 2024</span>
+                            <span class="blog-category">Operations</span>
+                        </div>
+                        <h3 class="blog-title">Optimizing Supply Chain with Six Sigma</h3>
+                        <p class="blog-excerpt">Applying Six Sigma principles to modern supply chain challenges. Learn how data-driven decisions and process optimization can revolutionize logistics and inventory management.</p>
+                        <a href="#" class="blog-read-more">Coming Soon</a>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Digital Marketing" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> September 10, 2024</span>
+                            <span class="blog-category">Marketing</span>
+                        </div>
+                        <h3 class="blog-title">Digital Transformation in Retail Operations</h3>
+                        <p class="blog-excerpt">Exploring how digital tools and analytics are reshaping retail operations. From my experience at Reliance Retail, I share insights on leveraging technology for operational excellence.</p>
+                        <a href="#" class="blog-read-more">Coming Soon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Modal -->
+    <div class="blog-modal" id="blogModal">
+        <div class="blog-modal-content">
+            <div class="blog-modal-header">
+                <button class="blog-modal-close" id="closeBlogModal">&times;</button>
+                <h2 class="blog-modal-title">Atomic Habits: The Power of Tiny Changes</h2>
+                <div class="blog-modal-meta">
+                    <span><i class="far fa-user"></i> Vadlamudi Venkata Sri Harsha</span>
+                    <span><i class="far fa-calendar"></i> November 15, 2024</span>
+                    <span><i class="far fa-clock"></i> 8 min read</span>
+                </div>
+            </div>
+            
+            <div class="blog-modal-body">
+                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Atomic Habits" class="blog-modal-image">
+                
+                <div class="blog-modal-text">
+                    <p>As an operations professional and MBA student passionate about efficiency and continuous improvement, I recently read James Clear's "Atomic Habits" and found its principles remarkably applicable to both personal development and professional operations. The book's central thesis—that tiny changes can lead to remarkable results—resonated deeply with my experience in optimizing processes and systems.</p>
+                    
+                    <h3>The 1% Rule: Small Gains Lead to Big Results</h3>
+                    <p>Clear introduces the concept of getting 1% better every day. In operations, we see this principle in action through Kaizen and continuous improvement methodologies. Just as a 1% daily improvement compounds to nearly 38 times better over a year, small operational tweaks—like reducing packing time by a few seconds or improving inventory accuracy by a fraction—can lead to massive efficiency gains over time.</p>
+                    
+                    <blockquote>
+                        "You do not rise to the level of your goals. You fall to the level of your systems."
+                    </blockquote>
+                    
+                    <h3>Building Effective Habit Systems</h3>
+                    <p>The Four Laws of Behavior Change that Clear outlines are particularly powerful:</p>
+                    
+                    <ul>
+                        <li><strong>Make it Obvious:</strong> In operations, this translates to clear SOPs and visual management systems. When processes are visible and obvious, compliance increases naturally.</li>
+                        <li><strong>Make it Attractive:</strong> Linking habits to immediate rewards creates positive reinforcement. In team management, this could mean celebrating small wins and creating positive feedback loops.</li>
+                        <li><strong>Make it Easy:</strong> Reducing friction is key. In supply chain management, we constantly work to reduce steps, simplify processes, and eliminate bottlenecks.</li>
+                        <li><strong>Make it Satisfying:</strong> Immediate rewards reinforce behavior. In my work at Reliance Retail, we tracked daily metrics that showed immediate impact, making continuous improvement satisfying for the team.</li>
+                    </ul>
+                    
+                    <h3>Applying Atomic Habits to Operations Management</h3>
+                    <p>From my experience in retail operations, I've seen how these principles work in practice:</p>
+                    
+                    <p><strong>1. Habit Stacking in Process Improvement:</strong> By attaching new quality checks to existing processes (like adding a quick inspection after each packing station), we built consistent quality habits without disrupting workflow.</p>
+                    
+                    <p><strong>2. Environment Design for Efficiency:</strong> Just as Clear suggests designing environments for better habits, we optimized warehouse layouts to make efficient workflows the easiest option, reducing the average packing time significantly.</p>
+                    
+                    <p><strong>3. Identity-Based Habits in Team Development:</strong> Instead of focusing solely on outcomes ("reduce shrinkage"), we cultivated an identity of excellence ("we are a team that maintains impeccable inventory accuracy"). This shift in mindset led to more sustainable improvements.</p>
+                    
+                    <h3>My Personal Implementation</h3>
+                    <p>Applying these principles to my MBA journey and professional development:</p>
+                    
+                    <ul>
+                        <li>I've implemented a "two-minute rule" for learning—committing to just two minutes of reading industry articles daily, which often extends to much longer sessions</li>
+                        <li>Created a study environment that makes productive habits obvious and easy</li>
+                        <li>Used habit tracking to maintain consistency in project work and skill development</li>
+                        <li>Applied the "never miss twice" rule to maintain momentum in both academic and professional commitments</li>
+                    </ul>
+                    
+                    <h3>Key Takeaways for Professionals</h3>
+                    <p>Whether you're in operations, marketing, or any field requiring consistent performance:</p>
+                    
+                    <p>1. <strong>Focus on systems, not goals:</strong> Sustainable improvement comes from building robust systems that produce consistent results.</p>
+                    <p>2. <strong>Small changes compound:</strong> Don't underestimate the power of 1% improvements in processes, skills, or productivity.</p>
+                    <p>3. <strong>Design your environment for success:</strong> Make good habits easy and bad habits difficult through thoughtful design.</p>
+                    <p>4. <strong>Measure what matters:</strong> Track leading indicators (habits and processes) rather than just lagging indicators (outcomes).</p>
+                    
+                    <p>As someone who has seen the power of incremental improvement in supply chain optimization and operational efficiency, I can confidently say that the principles in "Atomic Habits" are not just personal development advice—they're a blueprint for excellence in any systematic endeavor.</p>
+                </div>
+            </div>
+            
+            <div class="blog-modal-footer">
+                <div class="blog-modal-tags">
+                    <strong>Tags:</strong> Personal Development, Productivity, Operations, Continuous Improvement, Leadership
+                </div>
+                <div class="blog-modal-share">
+                    <a href="#" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Copy Link"><i class="fas fa-link"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <!-- ... [Footer content remains the same] ... -->
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Highlight current section in navigation
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav ul li a');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if(scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Blog Modal Functionality
+        const openBlogModal = document.getElementById('openBlogModal');
+        const closeBlogModal = document.getElementById('closeBlogModal');
+        const blogModal = document.getElementById('blogModal');
+        
+        openBlogModal.addEventListener('click', function(e) {
+            e.preventDefault();
+            blogModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+        });
+        
+        closeBlogModal.addEventListener('click', function() {
+            blogModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside content
+        blogModal.addEventListener('click', function(e) {
+            if(e.target === blogModal) {
+                blogModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if(e.key === 'Escape' && blogModal.style.display === 'block') {
+                blogModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Add active class styling to navigation
+        const style = document.createElement('style');
+        style.textContent = `
+            nav ul li a.active {
+                color: var(--secondary-color) !important;
+                font-weight: bold;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
