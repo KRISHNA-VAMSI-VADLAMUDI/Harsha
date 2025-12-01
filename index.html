@@ -168,9 +168,9 @@
             z-index: 2;
         }
         
-        /* Droplet Profile Image Design */
+        /* Droplet Profile Image Design - Adjusted for 720x1080 image */
         .profile-image-container {
-            flex: 0 0 400px;
+            flex: 0 0 450px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -178,8 +178,8 @@
         }
         
         .droplet-container {
-            width: 380px;
-            height: 450px;
+            width: 400px;
+            height: 600px; /* Taller to match 720x1080 aspect ratio */
             position: relative;
             filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3));
             animation: float 6s ease-in-out infinite;
@@ -194,7 +194,7 @@
             width: 100%;
             height: 100%;
             background: var(--gradient-secondary);
-            clip-path: polygon(50% 0%, 100% 30%, 100% 70%, 50% 100%, 0% 70%, 0% 30%);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             position: relative;
             overflow: hidden;
             border-radius: 15px;
@@ -223,7 +223,7 @@
             position: absolute;
             top: 5%;
             left: 5%;
-            clip-path: polygon(50% 0%, 100% 30%, 100% 70%, 50% 100%, 0% 70%, 0% 30%);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             border-radius: 10px;
             transition: all 0.5s ease;
         }
@@ -750,11 +750,11 @@
             opacity: 0.8;
         }
         
-        /* Responsive Design */
+        /* Responsive Design - Adjusted for taller image */
         @media (max-width: 1024px) {
             .droplet-container {
                 width: 350px;
-                height: 420px;
+                height: 525px;
             }
             
             .education-grid {
@@ -805,7 +805,7 @@
             
             .droplet-container {
                 width: 300px;
-                height: 370px;
+                height: 450px;
             }
             
             .profile-image-container {
@@ -839,7 +839,7 @@
         @media (max-width: 480px) {
             .droplet-container {
                 width: 260px;
-                height: 320px;
+                height: 390px;
             }
             
             .hero h1 {
@@ -873,7 +873,10 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <img src="https://raw.githubusercontent.com/KRISHNA-VAMSI-VADLAMUDI/Harsha/main/hero.jpg" alt="Profile" class="logo-img">
+                <!-- Your GitHub Image for Logo -->
+                <img src="https://raw.githubusercontent.com/KRISHNA-VAMSI-VADLAMUDI/Harsha/main/hero.jpg" 
+                     alt="Vadlamudi Venkata Sri Harsha" 
+                     class="logo-img">
                 <div class="logo-text">Vadlamudi <span>Venkata Sri Harsha</span></div>
             </div>
             
@@ -901,7 +904,10 @@
                 <div class="profile-image-container">
                     <div class="droplet-container">
                         <div class="droplet-shape">
-                            <img src="https://raw.githubusercontent.com/KRISHNA-VAMSI-VADLAMUDI/Harsha/main/hero.jpg" alt="Vadlamudi Venkata Sri Harsha" class="profile-image">
+                            <!-- Your GitHub Image for Hero Section -->
+                            <img src="https://raw.githubusercontent.com/KRISHNA-VAMSI-VADLAMUDI/Harsha/main/hero.jpg" 
+                                 alt="Vadlamudi Venkata Sri Harsha" 
+                                 class="profile-image">
                         </div>
                     </div>
                 </div>
@@ -1189,7 +1195,7 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 Vadlamudi Venkata Sri Harsha. All rights reserved.</p>
+                <p>&copy; 2024 Vadlamudi Venkata Sri Harsha. All rights reserved.</p>
                 <p style="margin-top: 10px;">Designed with passion for excellence</p>
             </div>
         </div>
@@ -1268,5 +1274,3 @@
     </script>
 </body>
 </html>
-
-
